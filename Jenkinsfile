@@ -49,7 +49,7 @@ pipeline {
         stage('Security Scan') {
             steps {
                 echo 'Scan de securite avec Trivy...'
-                bat 'trivy fs --severity HIGH,CRITICAL --exit-code 1 .'
+                bat '"C:\\ProgramData\\chocolatey\\bin\\trivy.exe" fs --severity HIGH,CRITICAL --exit-code 1 .'
             }
         }
 
