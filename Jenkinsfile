@@ -46,6 +46,13 @@ pipeline {
             }
         }
 
+        stage('Security Scan') {
+            steps {
+                echo 'Scan de securite avec Trivy...'
+                bat 'trivy fs --severity HIGH,CRITICAL --exit-code 1 .'
+            }
+        }
+
         stage('DEPLOY') {
             steps {
                 echo 'Mise en Production !'
@@ -58,7 +65,7 @@ pipeline {
             echo 'Pipeline termine avec succes !'
         }
         failure {
-            echo 'Echec du pipeline.'
+            echo 'Echec du pipeline - verifier les failles de securite !'
         }
     }
 }
